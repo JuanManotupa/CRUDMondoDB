@@ -40,6 +40,7 @@
             this.txtCorreo = new System.Windows.Forms.TextBox();
             this.btnRegistrar = new System.Windows.Forms.Button();
             this.btnMostrar = new System.Windows.Forms.Button();
+            this.btnBuscar = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label1
@@ -142,11 +143,22 @@
             this.btnMostrar.UseVisualStyleBackColor = true;
             this.btnMostrar.Click += new System.EventHandler(this.btnMostrar_Click);
             // 
+            // btnBuscar
+            // 
+            this.btnBuscar.Location = new System.Drawing.Point(56, 242);
+            this.btnBuscar.Name = "btnBuscar";
+            this.btnBuscar.Size = new System.Drawing.Size(100, 30);
+            this.btnBuscar.TabIndex = 22;
+            this.btnBuscar.Text = "Buscar";
+            this.btnBuscar.UseVisualStyleBackColor = true;
+            this.btnBuscar.Click += new System.EventHandler(this.btnBuscar_Click_1);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(217, 270);
+            this.ClientSize = new System.Drawing.Size(217, 288);
+            this.Controls.Add(this.btnBuscar);
             this.Controls.Add(this.btnMostrar);
             this.Controls.Add(this.btnRegistrar);
             this.Controls.Add(this.txtCorreo);
@@ -181,6 +193,7 @@
         private System.Windows.Forms.TextBox txtCorreo;
         private System.Windows.Forms.Button btnRegistrar;
         private System.Windows.Forms.Button btnMostrar;
+        private System.Windows.Forms.Button btnBuscar;
     }
 }
 

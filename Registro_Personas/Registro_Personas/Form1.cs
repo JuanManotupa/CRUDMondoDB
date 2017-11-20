@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using MongoDB.Bson;
 using MongoDB.Driver;
+using MongoDB.Driver.Builders;
 
 namespace Registro_Personas
 {
@@ -34,11 +35,13 @@ namespace Registro_Personas
                 var database = servidor.GetDatabase("Registro_Personas");
                 servidor.Connect();
                 var colection = database.GetCollection<Persona>("Persona");
-                var persona = new Persona {dni = txtDNI.Text, nombre = txtNombre.Text, apellido = txtApellido.Text, edad = txtEdad.Text, correo = txtCorreo.Text};
+                var persona = new Persona { dni = txtDNI.Text, nombre = txtNombre.Text, apellido = txtApellido.Text, edad = txtEdad.Text, correo = txtCorreo.Text };
                 colection.Insert(persona);
-                MessageBox.Show("Los datos fueron guardados exitosamente"); 
+                MessageBox.Show("Los datos fueron guardados exitosamente");
 
-            }catch(Exception error){            
+            }
+            catch (Exception error)
+            {
                 MessageBox.Show("Ocurrio un error" + error);
             }
             txtDNI.Text = "";
@@ -63,5 +66,31 @@ namespace Registro_Personas
             this.Visible = false;
         }
 
-       }
+
+        private void btnBuscar_Click_1(object sender, EventArgs e)
+        {
+            Mostrar ventana1 = new Mostrar();
+        
+                string conexion = "mongodb://localhost";
+                var mc = new MongoClient(conexion);
+                var server = mc.GetServer();
+                var database = server.GetDatabase("Registro_Personas");
+                server.Connect();
+
+                var colection = database.GetCollection<Persona>("Persona");
+                string dni = txtDNI.Text;
+                var query = Query<Persona>.EQ(x => x.dni, dni);
+                var persona = colection.FindOne(query);
+               
+                ventana1.dgwPersona.DataSource = null;
+
+            ventana1.dgwPersona.DataSource = colection.Find(query).ToList();
+            ventana1.Show();
+            MessageBox.Show("Se encontro el registro");
+
+                txtDNI.Text = "";
+
+                    
+         }
+    }
 }
